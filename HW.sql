@@ -7,30 +7,40 @@ SELECT COUNT(amount)
 FROM payment
 WHERE amount >= 3.99 AND amount <= 5.99;
 -- Question 3
-SELECT inventory_id, film_id
+SELECT COUNT(film_id), film_id
 FROM inventory
-GROUP BY inventory_id
-ORDER BY film_id;
+GROUP BY film_id
+ORDER BY COUNT(film_id) DESC;
 -- Question 4
 SELECT last_name
 FROM customer
 WHERE last_name = 'William';
 -- Question 5
-SELECT staff_id, rental_id
-FROM payment
-GROUP BY payment_id
-ORDER BY staff_id;
+SELECT COUNT(staff_id), staff_id
+FROM rental
+GROUP BY staff_id
+ORDER BY COUNT(staff_id) DESC;
 -- Question 6
 SELECT count(distinct district)
 FROM address;
 -- Question 7
-SELECT film_id, count(distinct actor_id)
+SELECT COUNT(film_id), film_id
 FROM film_actor
-GROUP BY film_actor.actor_id, film_actor.film_id
-ORDER BY actor_id;
+GROUP BY film_id
+ORDER BY COUNT(film_id) DESC;
 -- Question 8
-SELECT store_id, last_name
+SELECT COUNT(DISTINCT last_name)
 FROM customer
-WHERE last_name = '%es' AND store_id = 1;
+WHERE store_id = 1 AND last_name LIKE '%es';
 -- Question 9
+SELECT COUNT(amount), amount
+FROM payment
+WHERE customer_id >= 380 AND customer_id <= 430
+GROUP BY amount
+HAVING COUNT(amount) >= 250
+ORDER BY COUNT(amount);
 -- Question 10
+SELECT COUNT(rating), rating
+FROM film
+GROUP BY rating
+ORDER BY COUNT(rating) DESC;
